@@ -15,5 +15,7 @@ namespace FMP.ApplicationCore.Entities
         public string Nome { get; set; }
 
         public string CPF { get; set; }
+
+        public virtual ICollection<Contato> Contatos { get; set; }
     }
 }
