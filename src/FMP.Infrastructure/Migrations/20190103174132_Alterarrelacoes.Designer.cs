@@ -3,14 +3,16 @@ using System;
 using FMP.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FMP.Infrastructure.Migrations
 {
     [DbContext(typeof(FisioContext))]
-    partial class FisioContextModelSnapshot : ModelSnapshot
+    [Migration("20190103174132_Alterarrelacoes")]
+    partial class Alterarrelacoes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,22 +96,6 @@ namespace FMP.Infrastructure.Migrations
                     b.ToTable("Endereco");
                 });
 
-            modelBuilder.Entity("FMP.ApplicationCore.Entities.Menu", b =>
-                {
-                    b.Property<int>("MenuId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("MenuIdPai");
-
-                    b.Property<string>("Titulo");
-
-                    b.HasKey("MenuId");
-
-                    b.HasIndex("MenuIdPai");
-
-                    b.ToTable("Menu");
-                });
-
             modelBuilder.Entity("FMP.ApplicationCore.Entities.Profissao", b =>
                 {
                     b.Property<int>("ProfissaoId")
@@ -166,13 +152,6 @@ namespace FMP.Infrastructure.Migrations
                         .WithOne("Endereco")
                         .HasForeignKey("FMP.ApplicationCore.Entities.Endereco", "ClienteId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("FMP.ApplicationCore.Entities.Menu", b =>
-                {
-                    b.HasOne("FMP.ApplicationCore.Entities.Menu")
-                        .WithMany("SubMenu")
-                        .HasForeignKey("MenuIdPai");
                 });
 
             modelBuilder.Entity("FMP.ApplicationCore.Entities.ProfissaoCliente", b =>
