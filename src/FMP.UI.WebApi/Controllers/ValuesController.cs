@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FMP.ApplicationCore.Interfaces.Repositories;
+using FMP.ApplicationCore.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FMP.UI.WebApi.Controllers
@@ -10,11 +12,19 @@ namespace FMP.UI.WebApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IClienteService _clienteService;
+
+        public ValuesController(IClienteService clienteService)
+        {
+            _clienteService = clienteService;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var teste =  _clienteService.ObterTodos();
+            return null;
         }
 
         // GET api/values/5

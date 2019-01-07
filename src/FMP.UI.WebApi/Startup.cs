@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FMP.ApplicationCore.Interfaces.Repositories;
+using FMP.ApplicationCore.Interfaces.Services;
+using FMP.ApplicationCore.Services;
 using FMP.Infrastructure.Data;
+using FMP.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +35,9 @@ namespace FMP.UI.WebApi
 
             services.AddDbContext<FisioContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
 
 
         }
