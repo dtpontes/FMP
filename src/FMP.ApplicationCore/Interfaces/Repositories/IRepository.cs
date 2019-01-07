@@ -19,7 +19,5 @@ namespace FMP.ApplicationCore.Interfaces.Repositories
 
         void Remover(T entity);
 
-
-
     }
 }

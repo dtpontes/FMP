@@ -17,7 +17,7 @@ namespace FMP.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public T Adicionar(T entity)
+        public virtual T Adicionar(T entity)
         {
             _dbContext.Set<T>().Add(entity);
             _dbContext.SaveChanges();
@@ -37,7 +37,7 @@ namespace FMP.Infrastructure.Repositories
             return _dbContext.Set<T>().Where(predicado).AsEnumerable();
         }
 
-        public T ObterPorId(int id)
+        public virtual T ObterPorId(int id)
         {
             return _dbContext.Set<T>().Find(id);
         }
