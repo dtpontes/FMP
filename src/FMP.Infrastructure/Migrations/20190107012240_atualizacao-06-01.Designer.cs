@@ -3,14 +3,16 @@ using System;
 using FMP.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FMP.Infrastructure.Migrations
 {
     [DbContext(typeof(FisioContext))]
-    partial class FisioContextModelSnapshot : ModelSnapshot
+    [Migration("20190107012240_atualizacao-06-01")]
+    partial class atualizacao0601
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
