@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FMP.ApplicationCore.Entities;
 using FMP.ApplicationCore.Interfaces.Repositories;
 using FMP.ApplicationCore.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -21,10 +22,14 @@ namespace FMP.UI.WebApi.Controllers
 
         // GET api/values
         [HttpGet]
+        [ProducesResponseType(typeof(List<Paciente>), 200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public ActionResult<IEnumerable<string>> Get()
         {
-            var teste = _pacienteService.ObterTodos();
-            return null;
+            return Ok(_pacienteService.ObterTodos());
+            
         }
 
         // GET api/values/5

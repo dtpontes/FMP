@@ -42,7 +42,7 @@ namespace FMP.Infrastructure.Repositories
             return _dbContext.Set<T>().Find(id);
         }
 
-        public IEnumerable<T> ObterTodos()
+        public virtual IEnumerable<T> ObterTodos()
         {
             return _dbContext.Set<T>().AsEnumerable();
         }

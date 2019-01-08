@@ -6,6 +6,7 @@ using FMP.ApplicationCore.Interfaces.Repositories;
 using FMP.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore.Internal;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace FMP.Infrastructure.Repositories
 {
@@ -13,6 +14,14 @@ namespace FMP.Infrastructure.Repositories
     {
         public PacienteRepository(FisioContext dbContext) : base(dbContext)
         {
+        }
+
+        public override IEnumerable<Paciente>  ObterTodos()
+        {
+            //var verfificarResultado = "";
+            return _dbContext.Pacientes.Include(x => x.Cidade);
+            
+
         }
     }
 }
