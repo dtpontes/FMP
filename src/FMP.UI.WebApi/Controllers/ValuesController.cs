@@ -12,18 +12,18 @@ namespace FMP.UI.WebApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly IClienteService _clienteService;
+        private readonly IPacienteService _pacienteService;
 
-        public ValuesController(IClienteService clienteService)
+        public ValuesController(IPacienteService pacienteService)
         {
-            _clienteService = clienteService;
+            _pacienteService = pacienteService;
         }
 
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            var teste =  _clienteService.ObterTodos();
+            var teste = _pacienteService.ObterTodos();
             return null;
         }
 

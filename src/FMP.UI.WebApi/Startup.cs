@@ -39,6 +39,9 @@ namespace FMP.UI.WebApi
             services.AddScoped<IClienteService, ClienteService>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
 
+            services.AddScoped<IPacienteService, PacienteService>();
+            services.AddScoped<IPacienteRepository, PacienteRepository>();
+
 
         }
 

@@ -22,7 +22,7 @@ namespace FMP.Infrastructure.Repositories
 
         public override Cliente Adicionar(Cliente entity)
         {
-            var verfificarResultado = "";
+            //var verfificarResultado = "";
             _dbContext.Set<Cliente>().Add(entity);
             _dbContext.SaveChanges();
 
