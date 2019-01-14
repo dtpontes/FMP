@@ -20,5 +20,7 @@ namespace FMP.ApplicationCore.Interfaces.Services
         IEnumerable<Paciente> Buscar(Expression<Func<Paciente, bool>> predicado);
 
         void Remover(Paciente entity);
+
+        IEnumerable<Paciente> ObterPorNomeECPF(string Nome, string CPF);
     }
 }

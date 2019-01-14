@@ -28,8 +28,23 @@ namespace FMP.UI.WebApi.Controllers
         [ProducesResponseType(401)]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return Ok(_pacienteService.ObterTodos());
+            var pacientes = _pacienteService.ObterTodos();
+            return Ok(pacientes);
             
+        }
+
+        // GET api/values
+        [HttpGet]
+        [ProducesResponseType(typeof(List<Paciente>), 200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public ActionResult<IEnumerable<string>> Get(string nome, string cpf )
+        {
+
+            var pacientes = _pacienteService.ObterPorNomeECPF(nome,cpf );
+            return Ok(pacientes);
+
         }
 
         // GET api/values/5

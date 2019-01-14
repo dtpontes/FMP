@@ -7,7 +7,7 @@ namespace FMP.ApplicationCore.Interfaces.Repositories
 {
     public interface IPacienteRepository : IRepository<Paciente>
     {
-        
+        IEnumerable<Paciente> ObterPorNomeOuCPF(string Nome, string CPF);
 
     }
 }

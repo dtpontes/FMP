@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Text;
+using FMP.ApplicationCore.DTO;
 using FMP.ApplicationCore.Entities;
 using FMP.ApplicationCore.Interfaces.Repositories;
 using FMP.ApplicationCore.Interfaces.Services;
@@ -46,6 +47,11 @@ namespace FMP.ApplicationCore.Services
         public void Remover(Paciente entity)
         {
             _pacienterepository.Remover(entity);
+        }
+
+        public IEnumerable<Paciente> ObterPorNomeECPF(string Nome, string CPF)
+        {
+            return _pacienterepository.ObterPorNomeOuCPF(Nome, CPF);
         }
     }
 }
