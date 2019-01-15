@@ -39,7 +39,8 @@ namespace FMP.UI.WebApi.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public ActionResult<IEnumerable<string>> Get(string nome, string cpf )
+        [Route("[action]")]
+        public ActionResult<IEnumerable<string>> GetByNameECpf(string nome, string cpf )
         {
 
             var pacientes = _pacienteService.ObterPorNomeECPF(nome,cpf );
