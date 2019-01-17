@@ -14,5 +14,11 @@ namespace FMP.Infrastructure.Repositories
         public UsuarioRepository(FisioContext dbContext) : base(dbContext)
         {
         }
+
+        public Usuario ObterPorLoginESenha(string Login, string Senha)
+        {
+            //var verfificarResultado = "";
+            return _dbContext.Usuarios.Where(x => x.Login == Login && x.Senha == Senha).SingleOrDefault();
+        }
     }
 }

@@ -4,6 +4,7 @@ using FMP.ApplicationCore.Services;
 using FMP.Infrastructure.Data;
 using FMP.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +47,23 @@ namespace FMP.UI.WebApi
             services.AddScoped<IPacienteService, PacienteService>();
             services.AddScoped<IPacienteRepository, PacienteRepository>();
 
+            services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
+            // ********************
+            // Setup CORS
+            // ********************
+            var corsBuilder = new CorsPolicyBuilder();
+            corsBuilder.AllowAnyHeader();
+            corsBuilder.AllowAnyMethod();
+            corsBuilder.AllowAnyOrigin(); // For anyone access.
+            corsBuilder.AllowCredentials();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("SiteCorsPolicy", corsBuilder.Build());
+            });
+
 
         }
 
@@ -73,6 +91,11 @@ namespace FMP.UI.WebApi
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            // ********************
+            // USE CORS - might not be required.
+            // ********************
+            app.UseCors("SiteCorsPolicy");
         }
     }
 }

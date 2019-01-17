@@ -6,6 +6,7 @@ using FMP.ApplicationCore.Entities;
 using FMP.ApplicationCore.Interfaces.Repositories;
 using FMP.ApplicationCore.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 
 namespace FMP.UI.WebApi.Controllers
 {
@@ -22,6 +23,7 @@ namespace FMP.UI.WebApi.Controllers
 
         // GET api/values
         [HttpGet]
+        [EnableCors("SiteCorsPolicy")]
         [ProducesResponseType(typeof(List<Paciente>), 200)]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -35,6 +37,7 @@ namespace FMP.UI.WebApi.Controllers
 
         // GET api/values
         [HttpGet]
+        [EnableCors("SiteCorsPolicy")]
         [ProducesResponseType(typeof(List<Paciente>), 200)]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -49,10 +52,12 @@ namespace FMP.UI.WebApi.Controllers
         }
 
         // GET api/values/5
+        [EnableCors("SiteCorsPolicy")]
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            var paciente = _pacienteService.ObterPorId(id);
+            return Ok(paciente);
         }
 
         // POST api/values
@@ -62,9 +67,11 @@ namespace FMP.UI.WebApi.Controllers
         }
 
         // PUT api/values/5
+        [EnableCors("SiteCorsPolicy")]
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody]Paciente  value)
         {
+            var paciente = value;
         }
 
         // DELETE api/values/5
