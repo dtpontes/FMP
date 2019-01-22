@@ -61,9 +61,12 @@ namespace FMP.UI.WebApi.Controllers
         }
 
         // POST api/values
+        [EnableCors("SiteCorsPolicy")]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody]Paciente paciente)
         {
+            
+            _pacienteService.Adicionar(paciente);
         }
 
         // PUT api/values/5
