@@ -13,10 +13,14 @@ namespace FMP.ApplicationCore.Services
     public class PacienteService : IPacienteService
     {
         private readonly IPacienteRepository _pacienterepository;
+        private readonly IEstadoRepository _estadorepository;
+        private readonly ICidadeRepository _cidaderepository;
 
-        public PacienteService(IPacienteRepository pacienteRepository)
+        public PacienteService(IPacienteRepository pacienteRepository, IEstadoRepository estadoRepository, ICidadeRepository cidadeRepository)
         {
             _pacienterepository = pacienteRepository;
+            _estadorepository = estadoRepository;
+            _cidaderepository = cidadeRepository;
         }
 
         public Paciente Adicionar(Paciente entity)
@@ -52,6 +56,16 @@ namespace FMP.ApplicationCore.Services
         public IEnumerable<Paciente> ObterPorNomeECPF(string Nome, string CPF)
         {
             return _pacienterepository.ObterPorNomeOuCPF(Nome, CPF);
+        }
+
+        public IEnumerable<Estado> ObterTodosEstados()
+        {
+            return _estadorepository.ObterTodos();
+        }
+
+        public IEnumerable<Cidade> ObterCidadesPorIdEstado(int IdEstado)
+        {
+            return _cidaderepository.ObterporIdEstado(IdEstado);
         }
     }
 }

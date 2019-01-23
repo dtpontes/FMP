@@ -22,5 +22,9 @@ namespace FMP.ApplicationCore.Interfaces.Services
         void Remover(Paciente entity);
 
         IEnumerable<Paciente> ObterPorNomeECPF(string Nome, string CPF);
+
+        IEnumerable<Estado> ObterTodosEstados();
+
+        IEnumerable<Cidade> ObterCidadesPorIdEstado(int IdEstado);
     }
 }

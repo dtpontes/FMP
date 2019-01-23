@@ -13,6 +13,13 @@ namespace FMP.Infrastructure.Repositories
     {
         public CidadeRepository(FisioContext dbContext) : base(dbContext)
         {
+            
+        }
+
+        public IEnumerable<Cidade> ObterporIdEstado(int IdEstado)
+        {
+            //var verfificarResultado = "";
+            return _dbContext.Cidades.Where(x => x.EstadoId == IdEstado).ToList();
         }
     }
 }
