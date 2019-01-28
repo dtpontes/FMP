@@ -109,5 +109,14 @@ namespace FMP.UI.WebApi.Controllers
             var cidades = _pacienteService.ObterCidadesPorIdEstado(id);
             return Ok(cidades);
         }
+
+        // PUT api/values/5
+        [EnableCors("SiteCorsPolicy")]
+        [Route("[action]/{id}")]
+        [HttpPut("{id}")]
+        public void UtilizarCredito(int id, [FromBody]Paciente value)
+        {
+            _pacienteService.UtilizarCredito(value);
+        }
     }
 }

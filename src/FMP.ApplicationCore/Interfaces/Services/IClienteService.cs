@@ -20,5 +20,6 @@ namespace FMP.ApplicationCore.Interfaces.Services
         IEnumerable<Cliente> Buscar(Expression<Func<Cliente, bool>> predicado);
 
         void Remover(Cliente entity);
+        
     }
 }

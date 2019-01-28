@@ -67,5 +67,11 @@ namespace FMP.ApplicationCore.Services
         {
             return _cidaderepository.ObterporIdEstado(IdEstado);
         }
+
+        public void UtilizarCredito(Paciente entity)
+        {
+            entity.Creditos = entity.Creditos - 1;
+            _pacienterepository.Atualizar(entity);
+        }
     }
 }
