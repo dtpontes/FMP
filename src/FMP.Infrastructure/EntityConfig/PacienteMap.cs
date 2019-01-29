@@ -50,6 +50,9 @@ namespace FMP.Infrastructure.EntityConfig
             builder.Property(x => x.RG)
                 .HasColumnType("varchar(20)");
 
+            builder.Property(x => x.DataNascimento)
+                .HasColumnType("datetime"));
+
 
             builder.HasMany(x => x.PacienteCreditos)
                 .WithOne(x => x.Paciente)

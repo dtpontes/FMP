@@ -54,6 +54,8 @@ namespace FMP.UI.WebApi
             services.AddScoped<ICidadeRepository, CidadeRepository>();
             services.AddScoped<IEstadoRepository, EstadoRepository>();
 
+            services.AddScoped<IPacienteDebitoRepository, PacienteDebitoRepository>();
+
             // ********************
             // Setup CORS
             // ********************
