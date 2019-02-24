@@ -16,20 +16,24 @@ namespace FMP.ApplicationCore.Services
         private readonly IEstadoRepository _estadoRepository;
         private readonly ICidadeRepository _cidadeRepository;
         private readonly IPacienteDebitoRepository _pacienteDebitoRepository;
+        private readonly IPacienteCreditoRepository _pacienteCreditoRepository;
 
         public PacienteService( IPacienteRepository pacienteRepository,
                                 IEstadoRepository estadoRepository,
                                 ICidadeRepository cidadeRepository,
-                                IPacienteDebitoRepository pacienteDebitoRepository)
+                                IPacienteDebitoRepository pacienteDebitoRepository,
+                                IPacienteCreditoRepository pacienteCreditoRepository)
         {
             _pacienteRepository = pacienteRepository;
             _estadoRepository = estadoRepository;
             _cidadeRepository = cidadeRepository;
             _pacienteDebitoRepository = pacienteDebitoRepository;
+            _pacienteCreditoRepository = pacienteCreditoRepository;
         }
 
         public Paciente Adicionar(Paciente entity)
         {
+            entity.DataCadastro = DateTime.Now;
             return _pacienteRepository.Adicionar(entity);
         }
 
@@ -83,6 +87,26 @@ namespace FMP.ApplicationCore.Services
             pacienteDebito.PacienteId = entity.PacienteId;
             pacienteDebito.QtdCreditos = 1;
             _pacienteDebitoRepository.Adicionar(pacienteDebito);
+        }
+
+        public void AdicionarCredito(PacienteCredito entity)
+        {
+            entity.Data = DateTime.Now;
+            _pacienteCreditoRepository.Adicionar(entity);
+            var paciente = _pacienteRepository.ObterPorId(entity.PacienteId);
+
+            paciente.Creditos = paciente.Creditos + entity.QtdCreditos;
+            _pacienteRepository.Atualizar(paciente);
+            
+        }
+
+        public IEnumerable<PacienteDebito> ObterAtendimentosPorData(DateTime d)
+        {
+
+            DateTime dataInicial = new DateTime(d.Year, d.Month, d.Day, 0, 0, 0);
+            DateTime dataFinal = new DateTime(d.Year, d.Month, d.Day, 23, 59, 59);
+
+            return _pacienteRepository.ObterPorDataDeAtendimento(dataInicial, dataFinal);
         }
     }
 }

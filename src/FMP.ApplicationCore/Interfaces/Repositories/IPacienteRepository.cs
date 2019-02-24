@@ -9,5 +9,7 @@ namespace FMP.ApplicationCore.Interfaces.Repositories
     {
         IEnumerable<Paciente> ObterPorNomeOuCPF(string Nome, string CPF);
 
+        IEnumerable<PacienteDebito> ObterPorDataDeAtendimento(DateTime DataInicial, DateTime DataFinal);
+
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FMP.Infrastructure.Migrations
 {
-    public partial class criacao_tabela_fisio : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -87,7 +87,8 @@ namespace FMP.Infrastructure.Migrations
                     Creditos = table.Column<int>(nullable: false),
                     CPF = table.Column<string>(nullable: true),
                     RG = table.Column<string>(nullable: true),
-                    Foto = table.Column<string>(nullable: true)
+                    Foto = table.Column<string>(nullable: true),
+                    DataNascimento = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

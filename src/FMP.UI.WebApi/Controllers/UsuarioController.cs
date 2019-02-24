@@ -39,18 +39,10 @@ namespace FMP.UI.WebApi.Controllers
         [EnableCors("SiteCorsPolicy")]
         [Route("[action]")]
         [HttpGet]
-        public ActionResult<bool> getLoginSenha(string login, string senha)
+        public ActionResult<string> getLoginSenha(string login, string senha)
         {
-            var paciente = _usuarioService.ObterPorLoginESenha(login, senha);
-            if (paciente != null)
-            {
-                return Ok(true);
-            }
-            else
-            {
-                return Ok(false);
-
-            }
+            var usuario = _usuarioService.ObterPorLoginESenha(login, senha);
+            return Ok(usuario);
 
             
         }

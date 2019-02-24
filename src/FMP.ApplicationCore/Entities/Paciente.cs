@@ -39,7 +39,7 @@ namespace FMP.ApplicationCore.Entities
 
         public string Foto { get; set; }
 
-        public DateTime DataNascimento { get; set; }
+        public DateTime? DataNascimento { get; set; }
 
         public  Cidade Cidade { get; set; }
 

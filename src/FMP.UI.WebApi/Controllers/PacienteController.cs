@@ -31,7 +31,12 @@ namespace FMP.UI.WebApi.Controllers
         [ProducesResponseType(401)]
         public ActionResult<IEnumerable<string>> Get()
         {
-            var pacientes = _pacienteService.ObterTodos();
+            var pacientes = _pacienteService.ObterTodos().Select(x=> new { pacienteId = x.PacienteId, Nome= x.Nome,
+                                                            cidadeId = x.CidadeId, endereco =  x.Endereco,
+                                                            complemento =x.Complemento,cep=x.CEP, cpf = x.CPF,
+                                                            telCelular = x.TelCelular, telResidencial = x.TelResidencial,
+                                                            email = x.Email, dataCadastro = x.DataCadastro,
+                                                            creditos = x.Creditos,rg = x.RG, foto = x.Foto });
             return Ok(pacientes);
             
         }
@@ -72,8 +77,9 @@ namespace FMP.UI.WebApi.Controllers
 
         // PUT api/values/5
         [EnableCors("SiteCorsPolicy")]
+        [Route("[action]/{id}")]
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Paciente  value)
+        public void AtualizarPaciente(int id, [FromBody]Paciente  value)
         {
             _pacienteService.Atualizar(value);
         }
@@ -117,6 +123,36 @@ namespace FMP.UI.WebApi.Controllers
         public void UtilizarCredito(int id, [FromBody]Paciente value)
         {
             _pacienteService.UtilizarCredito(value);
+        }
+
+        // POST api/values
+        [EnableCors("SiteCorsPolicy")]
+        [HttpPost]
+        [Route("[action]")]
+        public void AdicionarCredito([FromBody]PacienteCredito pacienteCredito)
+        {
+
+            _pacienteService.AdicionarCredito(pacienteCredito);
+        }
+
+        // GET api/values/5
+        [EnableCors("SiteCorsPolicy")]
+        [Route("[action]/{data}")]
+        [HttpGet]
+        public ActionResult<IEnumerable<PacienteDebito>> ObterAtendimentosPorData(string data)
+        {
+            DateTime dataInicial = Convert.ToDateTime(data);
+            var pacientes = _pacienteService.ObterAtendimentosPorData(dataInicial).Select(x => new {
+                pacienteId = x.PacienteId,
+                Nome = x.Paciente.Nome,                
+                cpf = x.Paciente.CPF,
+                telCelular = x.Paciente.TelCelular,
+                telResidencial = x.Paciente.TelResidencial,
+                email = x.Paciente.Email,
+                dataAtendimento = x.Data
+            });
+            return Ok(pacientes);
+
         }
     }
 }

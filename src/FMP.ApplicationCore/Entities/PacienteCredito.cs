@@ -16,7 +16,7 @@ namespace FMP.ApplicationCore.Entities
 
         public decimal Valor { get; set; }
 
-        public int IdTipoPagamento { get; set; }
+        public int TipoPagamentoId { get; set; }
 
         public bool Compensado { get; set; }
 

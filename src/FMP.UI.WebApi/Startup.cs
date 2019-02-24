@@ -40,9 +40,7 @@ namespace FMP.UI.WebApi
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
-
-            services.AddScoped<IClienteService, ClienteService>();
-            services.AddScoped<IClienteRepository, ClienteRepository>();
+            
 
             services.AddScoped<IPacienteService, PacienteService>();
             services.AddScoped<IPacienteRepository, PacienteRepository>();
@@ -53,6 +51,7 @@ namespace FMP.UI.WebApi
             
             services.AddScoped<ICidadeRepository, CidadeRepository>();
             services.AddScoped<IEstadoRepository, EstadoRepository>();
+            services.AddScoped<IPacienteCreditoRepository, PacienteCreditoRepository>();
 
             services.AddScoped<IPacienteDebitoRepository, PacienteDebitoRepository>();
 

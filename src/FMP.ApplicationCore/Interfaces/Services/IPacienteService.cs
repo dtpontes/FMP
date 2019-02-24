@@ -28,5 +28,9 @@ namespace FMP.ApplicationCore.Interfaces.Services
         IEnumerable<Cidade> ObterCidadesPorIdEstado(int IdEstado);
 
         void UtilizarCredito(Paciente entity);
+
+        void AdicionarCredito(PacienteCredito entity);
+
+        IEnumerable<PacienteDebito> ObterAtendimentosPorData(DateTime data);
     }
 }
